@@ -1,0 +1,14 @@
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\bin\Debug\DoAnFramwork.exe.config
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\bin\Debug\DoAnFramwork.exe
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\bin\Debug\DoAnFramwork.pdb
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.csprojResolveAssemblyReference.cache
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.Properties.Resources.resources
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.csproj.GenerateResource.Cache
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.csproj.CoreCompileInputs.cache
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.exe
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.pdb
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.BaseForm.resources
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.FormMain.resources
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.FormUpdate.resources
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.FormAdd.resources
+D:\BaiTap\MauThietKe\DoAnFramwork\DoAnFramwork\obj\Debug\DoAnFramwork.FormLogin.resources
