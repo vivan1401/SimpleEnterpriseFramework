@@ -15,10 +15,21 @@ namespace DoAnFramwork
         private Dictionary<string, TextBox> listTextBox = new Dictionary<string, TextBox>();
         private Dictionary<string, string> dataDraw = new Dictionary<string, string>();
 
-        public FormUpdate()
+        public FormUpdate(FormType formType, String formTitle, Size formSize, String databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }
+
+        protected override void LoadTitle()
+        {
+            this.Text = "Màn hình cập nhật";
+        }
+
+        protected override void LoadButtonsText()
+        {
+            this.btnUpdate.Text = this.m_buttonsName[1];
+        }
+
 
         //Load dataDraw từ formMain
         public void DataUpdate(Dictionary<string,string> _data)
@@ -53,7 +64,7 @@ namespace DoAnFramwork
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        protected override void BtnUpdate_Click(object sender, EventArgs e)
         {
             string test = "";
             foreach (KeyValuePair<string, string> feild in feilds)

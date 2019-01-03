@@ -14,10 +14,21 @@ namespace DoAnFramwork
     {
         Dictionary<string,TextBox> listTextBox = new Dictionary<string,TextBox>();
 
-        public FormAdd()
+        public FormAdd(FormType formType, String formTitle, Size formSize, String databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }
+
+        protected override void LoadTitle()
+        {
+            this.Text = "Màn hình thêm";
+        }
+
+        protected override void LoadButtonsText()
+        {
+            this.btnAdd.Text = this.m_buttonsName[0];
+        }
+
 
         private void FormAdd_Load(object sender, EventArgs e)
         {
@@ -49,7 +60,7 @@ namespace DoAnFramwork
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        protected override void BtnAdd_Click(object sender, EventArgs e)
         {
             string test = "";
             foreach (KeyValuePair<string, string> feild in feilds)
