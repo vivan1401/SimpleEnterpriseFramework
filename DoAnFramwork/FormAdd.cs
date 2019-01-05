@@ -69,5 +69,11 @@ namespace DoAnFramwork
             }
             MessageBox.Show(test);
         }
+
+        protected override void addBtnAdd()
+        {
+            base.addBtnAdd();
+            this.btnAdd.Location = new System.Drawing.Point(463, 269);
+        }
     }
 }

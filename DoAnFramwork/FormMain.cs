@@ -59,7 +59,10 @@ namespace DoAnFramwork
                 List<string> row = new List<string>();
                 foreach (ColumnHeader header in listView1.Columns)
                 {
-                    row.Add(dataTable[i][header.Text]);
+                    if (dataTable[i].ContainsKey(header.Text))
+                        row.Add(dataTable[i][header.Text]);
+                    else
+                        row.Add("");
                 }
                 ListViewItem item = new ListViewItem(row.ToArray());
 

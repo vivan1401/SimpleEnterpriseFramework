@@ -52,7 +52,8 @@ namespace DoAnFramwork
 
                 TextBox textBox = new TextBox();
                 //Load dữ liệu từ dataDraw, bên formAdd ko có dòng này
-                textBox.Text = dataDraw[feild.Key];
+                if(dataDraw.ContainsKey(feild.Key))
+                    textBox.Text = dataDraw[feild.Key];
                 textBox.Size = new Size(300, 20);
                 textBox.Location = new Point(230, 20 + i * 40);
                 textBox.Parent = this;
@@ -77,6 +78,12 @@ namespace DoAnFramwork
         private void FormUpdate_Load(object sender, EventArgs e)
         {
             CreateLabel();
+        }
+
+        protected override void addBtnUpdate()
+        {
+            base.addBtnUpdate();
+            this.btnUpdate.Location = new System.Drawing.Point(463, 269);
         }
     }
 }
