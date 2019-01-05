@@ -75,7 +75,7 @@ namespace DoAnFramwork
 
             if(db.insert(tables[currentTable], text.ToArray()) == 0)
             {
-                throw new Exception("Cannot insert");
+                throw new Exception("Cannot insert data");
             }
             else
             {

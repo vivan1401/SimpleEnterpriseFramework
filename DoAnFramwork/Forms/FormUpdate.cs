@@ -16,9 +16,12 @@ namespace DoAnFramwork
     {
         private Dictionary<string, TextBox> listTextBox = new Dictionary<string, TextBox>();
         private Dictionary<string, string> dataDraw = new Dictionary<string, string>();
+        private int currentTable;
 
-        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection, int currentTable) : base(formType, member, formTitle, formSize, databaseConnection)
         {
+            this.currentTable = currentTable;
+            feilds = db.getFields(tables[currentTable]);
             InitializeComponent();
         }
 
@@ -69,12 +72,21 @@ namespace DoAnFramwork
 
         protected override void BtnUpdate_Click(object sender, EventArgs e)
         {
-            string test = "";
+            List<string> text = new List<string>();
             foreach (KeyValuePair<string, Type> feild in feilds)
             {
-                test += listTextBox[feild.Key].Text + " ; ";
+                text.Add(listTextBox[feild.Key].Text);
             }
-            MessageBox.Show(test);
+
+            if (db.update(tables[currentTable], dataDraw.Values.ToArray(),text.ToArray()) == 0)
+            {
+                throw new Exception("Cannot update data");
+            }
+            else
+            {
+                this.Close();
+            }
+            //MessageBox.Show(test);
         }
 
         private void FormUpdate_Load(object sender, EventArgs e)

@@ -10,8 +10,8 @@ namespace Framework{
     public interface DatabaseConnection{
         List<Dictionary<String,String>> readData(String tableName);
         int insert(String tableName, Object[] values);
-        int update(String tableName,Object[] values);
-        int delete(String tableName,Object obj);
+        int update(String tableName,Object[] oldValues,Object[] newValues);
+        int delete(String tableName, Object[] values);
         Dictionary<String,Type> getField();
         Dictionary<String,Type> getFields(String tableName);
         List<String> getTables();

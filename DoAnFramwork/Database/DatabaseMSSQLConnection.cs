@@ -123,7 +123,7 @@ namespace Framework
             }
         }
 
-        public int update(String tableName, Object[] objs)
+        public int update(String tableName, Object[] oldValues, Object[] newValues)
         {
             SqlConnection cnn = null;
             SqlCommand cmd;
@@ -133,7 +133,7 @@ namespace Framework
             {
                 List<String> fields = this.getFields(tableName).Keys.ToList();
 
-                if (objs.Length != fields.Count)
+                if (oldValues.Length != fields.Count)
                 {
                     return 0;
                 }
@@ -142,18 +142,23 @@ namespace Framework
                 cnn = this.createConnection();
                 cnn.Open();
 
-                String paramsString = this.createParamsUpdateString(fields);
+                String paramsString = this.createParamsSetUpdateString(fields);
 
                 cmd = cnn.CreateCommand();
 
-                cmd.CommandText = "update " + tableName + " set " + paramsString + " where " + fields[0] + " = " +objs[0] ;
+                //cmd.CommandText = "update " + tableName + " set " + paramsSetString + " where " + fields[0] + " = " +objs[0] ;
+                cmd.CommandText = "update " + tableName + " set " + paramsString;
                 //cmd.Parameters.AddWithValue("@tableName", tableName);
-                for (int i = 0; i < objs.Length; i++)
+                for (int i = 0; i < newValues.Length; i++)
                 {
-                    cmd.Parameters.AddWithValue("@param" + i, objs[i]);
+                    cmd.Parameters.AddWithValue("@param" + i, newValues[i]); 
                 }
-                cmd.Parameters.AddWithValue("@keyField", fields[0]);
-                cmd.Parameters.AddWithValue("@paramKey", objs[0]);
+                for (int i = newValues.Length; i < newValues.Length*2; i++)
+                {
+                    cmd.Parameters.AddWithValue("@param" + i, oldValues[i- oldValues.Length]);
+                }
+                //cmd.Parameters.AddWithValue("@keyField", fields[0]);
+                //cmd.Parameters.AddWithValue("@paramKey", oldValues[0]);
                 Console.Write(cmd.CommandText);
 
                 return cmd.ExecuteNonQuery();
@@ -165,7 +170,7 @@ namespace Framework
             }
         }
 
-        public int delete(String tableName, Object keyPrimaryValue)
+        public int delete(String tableName, Object[] values)
         {
             SqlConnection cnn = null;
             SqlCommand cmd;
@@ -178,14 +183,16 @@ namespace Framework
                 cnn = this.createConnection();
                 cnn.Open();
 
-                String paramsString = this.createParamsUpdateString(fields);
+                String paramsString = this.createParamsDeleteString(fields);
 
                 cmd = cnn.CreateCommand();
-
-                cmd.CommandText = "delete from " + tableName + " where " + fields[0] + " = @param";
+                
+                cmd.CommandText = "delete from " + tableName + " where " + this.createParamsDeleteString(fields);
                 //cmd.Parameters.AddWithValue("@tableName", tableName);
-
-                cmd.Parameters.AddWithValue("@param", keyPrimaryValue);
+                for (int i = 0; i < values.Length; i++)
+                {
+                    cmd.Parameters.AddWithValue("@param" + i, values[i]);
+                }
 
                 return cmd.ExecuteNonQuery();
 
@@ -394,7 +401,25 @@ namespace Framework
             paramsString.Append(")");
             return paramsString.ToString();
         }
-        private String createParamsUpdateString(List<String> fields)
+        //private String createParamsConditionUpdateString(List<String> fields) {
+        //    StringBuilder paramsString = new StringBuilder();
+        //    if (fields.Count < 1)
+        //        return "";
+        //    for (int i = 0; i < fields.Count; ++i)
+        //    {
+        //        paramsString.Append(fields[i])
+        //            .Append(" = ")
+        //            .Append("@paramc")
+        //            .Append(i);
+        //        if (i < fields.Count - 1)
+        //        {
+        //            paramsString.Append(" AND ");
+        //        }
+        //    }
+        //    paramsString.Append(" ");
+        //    return paramsString.ToString();
+        //}
+        private String createParamsSetUpdateString(List<String> fields)
         {
             StringBuilder paramsString = new StringBuilder();
             if (fields.Count < 1)
@@ -410,7 +435,37 @@ namespace Framework
                     paramsString.Append(",");
                 }
             }
-            paramsString.Append(" ");
+            paramsString.Append(" where ");
+            for (int i = 0; i < fields.Count; ++i)
+            {
+                paramsString.Append(fields[i])
+                    .Append(" = ")
+                    .Append("@param")
+                    .Append(i+fields.Count);
+
+                if (i < fields.Count - 1)
+                {
+                    paramsString.Append(" AND ");
+                }
+            }
+            return paramsString.ToString();
+        }
+        private String createParamsDeleteString(List<String> fields) {
+            StringBuilder paramsString = new StringBuilder();
+            if (fields.Count < 1)
+                return "";
+            for (int i = 0; i < fields.Count; ++i)
+            {
+                paramsString.Append(fields[i])
+                    .Append(" = ")
+                    .Append("@param")
+                    .Append(i);
+                    
+                if (i < fields.Count - 1)
+                {
+                    paramsString.Append(" AND ");
+                }
+            }
             return paramsString.ToString();
         }
     }

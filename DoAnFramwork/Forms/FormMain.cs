@@ -58,8 +58,18 @@ namespace DoAnFramwork
         {
             if (listView1.SelectedItems.Count <= 0)
                 return;
-            dataTable.Remove(dataTable[listView1.SelectedIndices[0]]);
-            listView1.Items.Remove(listView1.SelectedItems[0]);
+            //dataTable.Remove(dataTable[listView1.SelectedIndices[0]]);
+            //listView1.Items.Remove(listView1.SelectedItems[0]);
+            if(db.delete(tables[cbChooseDataTable.SelectedIndex],dataTable[listView1.SelectedIndices[0]].Values.ToArray()) != 0)
+            {
+                feilds = db.getFields(cbChooseDataTable.Text);
+                dataTable = db.readData(cbChooseDataTable.Text);
+                LoadTable();
+            }
+            else
+            {
+                throw new Exception("Cannot remove data");
+            }
         }
 
         //Sửa
@@ -69,7 +79,8 @@ namespace DoAnFramwork
                 return;
             try
             {
-                FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_member, "update123", new Size(570, 345), db);
+                FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_member, "update123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                formUpdate.FormClosing += this.FormChild_FormClosing;
                 formUpdate.SetupForm();
                 formUpdate.DataUpdate(dataTable[listView1.SelectedIndices[0]]);
                 formUpdate.ShowDialog();
