@@ -23,6 +23,7 @@ namespace DoAnFramwork
         protected String m_FormTitle = "";
         protected FormType m_FormType = FormType.Main;
         protected String[] m_buttonsName = { "Thêm", "Cập nhật", "Xóa" };
+        protected int[] m_roles = { 0,0,0,0};   // 1.Xem, 2.Thêm, 3.Xóa, 4.Sửa
 
         protected Button btnAdd = new Button();
         protected Button btnUpdate = new Button();
@@ -30,11 +31,12 @@ namespace DoAnFramwork
 
         public BaseForm() {}
 
-        public BaseForm(FormType formType, String formTitle, Size formSize, String databaseConnection) : this()
+        public BaseForm(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : this()
         {
             m_FormType = formType;
             m_FormTitle = formTitle;
             m_FormSize = formSize;
+            m_roles = roles;
             InitializeComponent();
         }
 
@@ -49,6 +51,7 @@ namespace DoAnFramwork
             LoadSize();
             LoadTitle();
             LoadButtons();
+            LoadRoles();
             //LoadButtonsText();
             this.CenterToScreen();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -68,6 +71,13 @@ namespace DoAnFramwork
         protected virtual void LoadTitle()
         {
             this.Text = m_FormTitle;
+        }
+
+        protected virtual void LoadRoles()
+        {
+            this.btnAdd.Enabled = m_roles[1] == 1 ? true : false;
+            this.btnUpdate.Enabled = m_roles[2] == 1 ? true : false;
+            this.btnRemove.Enabled = m_roles[3] == 1 ? true : false;
         }
 
         protected virtual void LoadButtonsText()

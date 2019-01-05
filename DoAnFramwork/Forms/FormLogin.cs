@@ -22,7 +22,7 @@ namespace DoAnFramwork
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormMain formMain = new FormMain(FormType.Main, "main123", new Size(570,345), "");
+            FormMain formMain = new FormMain(FormType.Main, new int[] { 0,1,0,1}, "main123", new Size(570,345), "");
             formMain.SetupForm();
             formMain.Show();
             formMain.Owner = this;

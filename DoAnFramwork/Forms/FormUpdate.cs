@@ -15,7 +15,7 @@ namespace DoAnFramwork
         private Dictionary<string, TextBox> listTextBox = new Dictionary<string, TextBox>();
         private Dictionary<string, string> dataDraw = new Dictionary<string, string>();
 
-        public FormUpdate(FormType formType, String formTitle, Size formSize, String databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
+        public FormUpdate(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : base(formType, roles, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }

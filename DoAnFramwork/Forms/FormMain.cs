@@ -14,7 +14,7 @@ namespace DoAnFramwork
     {
         public List<Dictionary<string, string>> dataTable = new List<Dictionary<string, string>>();
         
-        public FormMain(FormType formType, String formTitle, Size formSize, String databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
+        public FormMain(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : base(formType, roles, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }
@@ -88,7 +88,7 @@ namespace DoAnFramwork
         {
             if (listView1.SelectedItems.Count <= 0)
                 return;
-            FormUpdate formUpdate = new FormUpdate(FormType.Update, "update123", new Size(570, 345), "");
+            FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_roles, "update123", new Size(570, 345), "");
             formUpdate.SetupForm();
             formUpdate.DataUpdate(dataTable[listView1.SelectedIndices[0]]);
             formUpdate.ShowDialog();
@@ -97,7 +97,7 @@ namespace DoAnFramwork
         //Thêm
         protected override void BtnAdd_Click(object sender, EventArgs e)
         {
-            FormAdd formAdd = new FormAdd(FormType.Add,"add123",new Size(570, 345), "");
+            FormAdd formAdd = new FormAdd(FormType.Add, this.m_roles, "add123", new Size(570, 345), "");
             formAdd.SetupForm();
             formAdd.ShowDialog();
         }

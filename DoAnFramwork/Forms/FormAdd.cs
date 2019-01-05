@@ -14,7 +14,7 @@ namespace DoAnFramwork
     {
         Dictionary<string,TextBox> listTextBox = new Dictionary<string,TextBox>();
 
-        public FormAdd(FormType formType, String formTitle, Size formSize, String databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
+        public FormAdd(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : base(formType, roles, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }
