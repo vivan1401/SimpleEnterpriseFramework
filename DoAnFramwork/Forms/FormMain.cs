@@ -86,6 +86,7 @@ namespace DoAnFramwork
             try
             {
                 FormAdd formAdd = new FormAdd(FormType.Add, this.m_member, "add123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                formAdd.FormClosing += this.FormChild_FormClosing;
                 formAdd.SetupForm();
                 formAdd.ShowDialog();
             }
@@ -146,6 +147,13 @@ namespace DoAnFramwork
 
             //Auto resize
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void FormChild_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            feilds = db.getFields(cbChooseDataTable.Text);
+            dataTable = db.readData(cbChooseDataTable.Text);
+            LoadTable();
         }
     }
 }
