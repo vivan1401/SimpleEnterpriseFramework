@@ -41,6 +41,7 @@
             this.cbChooseDataTable.Name = "cbChooseDataTable";
             this.cbChooseDataTable.Size = new System.Drawing.Size(121, 21);
             this.cbChooseDataTable.TabIndex = 2;
+            this.cbChooseDataTable.SelectedIndexChanged += new System.EventHandler(this.OnChangeTable);
             // 
             // label1
             // 

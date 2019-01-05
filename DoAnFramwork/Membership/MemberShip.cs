@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MemberShip
 {
-    internal class MemberShip
+    public class MemberShip
     {
         public MemberShip(string username, string password)
         {

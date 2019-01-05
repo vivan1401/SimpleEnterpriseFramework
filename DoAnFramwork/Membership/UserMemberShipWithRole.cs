@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MemberShip
 {
-    internal class UserMemberShipWithRole
+    public class UserMemberShipWithRole
     {
         private MemberShip member;
         private Role role;

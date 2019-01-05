@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MemberShip;
+using Framework;
 
 namespace DoAnFramwork
 {
@@ -15,7 +17,7 @@ namespace DoAnFramwork
         private Dictionary<string, TextBox> listTextBox = new Dictionary<string, TextBox>();
         private Dictionary<string, string> dataDraw = new Dictionary<string, string>();
 
-        public FormUpdate(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : base(formType, roles, formTitle, formSize, databaseConnection)
+        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
         }
@@ -41,7 +43,7 @@ namespace DoAnFramwork
         public void CreateLabel()
         {
             int i = 0;
-            foreach (KeyValuePair<string, string> feild in feilds)
+            foreach (KeyValuePair<string, Type> feild in feilds)
             {
                 Label label = new Label();
                 label.Text = feild.Key;
@@ -68,7 +70,7 @@ namespace DoAnFramwork
         protected override void BtnUpdate_Click(object sender, EventArgs e)
         {
             string test = "";
-            foreach (KeyValuePair<string, string> feild in feilds)
+            foreach (KeyValuePair<string, Type> feild in feilds)
             {
                 test += listTextBox[feild.Key].Text + " ; ";
             }

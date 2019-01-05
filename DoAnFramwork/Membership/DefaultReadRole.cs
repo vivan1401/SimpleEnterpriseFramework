@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace MemberShip
 {
-    internal class DefaultReadRole : ReadRole
+    public class DefaultReadRole : ReadRole
     {
         public override List<bool> readRole(string username, string password)
         {

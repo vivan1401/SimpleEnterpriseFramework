@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MemberShip
 {
-    abstract internal class ReadRole
+    abstract public class ReadRole
     {
         abstract public List<bool> readRole(string username, string password);
     }
