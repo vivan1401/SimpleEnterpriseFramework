@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoAnFramwork", "DoAnFramwork\DoAnFramwork.csproj", "{77A4EC6D-0B97-4895-8558-641D453CE883}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameWorkDll", "FrameWorkDll\FrameWorkDll.csproj", "{FCC88B6B-167F-402B-8A26-34F71666EFEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{77A4EC6D-0B97-4895-8558-641D453CE883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A4EC6D-0B97-4895-8558-641D453CE883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A4EC6D-0B97-4895-8558-641D453CE883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
