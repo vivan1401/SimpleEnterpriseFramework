@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoAnFramwork", "DoAnFramwor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameWorkDll", "FrameWorkDll\FrameWorkDll.csproj", "{FCC88B6B-167F-402B-8A26-34F71666EFEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{CDA3ECA6-222A-4229-9A7E-7592FD75DD0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCC88B6B-167F-402B-8A26-34F71666EFEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA3ECA6-222A-4229-9A7E-7592FD75DD0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA3ECA6-222A-4229-9A7E-7592FD75DD0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA3ECA6-222A-4229-9A7E-7592FD75DD0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA3ECA6-222A-4229-9A7E-7592FD75DD0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
