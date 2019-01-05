@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DoAnFramwork.Program" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoAnFramwork.FormUpdate" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAAAAAACCCAAiBAAAAAAAgAAQAAEQAAA=</HashCode>
+      <FileName>Forms\FormUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoAnFramwork.FormMain" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABCAABBAAAACACAAiBAAACAgAAAAAAoAAAAA=</HashCode>
+      <FileName>Forms\FormMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoAnFramwork.FormLogin" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAIAAAAAUAAAAIAAAA=</HashCode>
+      <FileName>Forms\FormLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoAnFramwork.FormAdd" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAAAAAACAGAAiAAAAAAAAAAAAAgBQAAA=</HashCode>
+      <FileName>Forms\FormAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoAnFramwork.BaseForm" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAEQGAABABQAACEGggiTAAAiAAAgAAABgQAACA=</HashCode>
+      <FileName>Forms\BaseForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MemberShip.UserMemberShipWithRole" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAUAgAAAAAAgAAAIABAAQAAAAAAgCAAAAAAgAAA=</HashCode>
+      <FileName>Membership\UserMemberShipWithRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MemberShip.Role" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAgAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Membership\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MemberShip.ReadRole" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\ReadRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MemberShip.MemberShip" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAEAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>Membership\MemberShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MemberShip.DefaultReadRole" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\DefaultReadRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.DatabaseMSSQLConnection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACBAAFAAABAAAAAAAAgAQEACSAAAAAAAAEAAgAEAAA=</HashCode>
+      <FileName>Database\DatabaseMSSQLConnection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Framework.DatabaseConnection" Collapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAEAAABAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Database\DatabaseConnection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DoAnFramwork.FormType" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Forms\BaseForm.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
