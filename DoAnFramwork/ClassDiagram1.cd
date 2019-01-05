@@ -10,7 +10,7 @@
   <Class Name="DoAnFramwork.FormUpdate">
     <Position X="2.75" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAACAAAAAAAACCCAAiBAAAAAAAgAAQAAEQAAA=</HashCode>
+      <HashCode>AAAEAgAAACAAAAAAAICCCAACBAAAAAAAgAAQAAEQAAA=</HashCode>
       <FileName>Forms\FormUpdate.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -40,7 +40,7 @@
   <Class Name="DoAnFramwork.FormAdd">
     <Position X="0.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAACAAAAAAAACAGAAiAAAAAAAAAAAAAgBQAAA=</HashCode>
+      <HashCode>AAAEAgAAACAAAAAAAICAGAAiAAAAAAAAAAAAAgBQAAA=</HashCode>
       <FileName>Forms\FormAdd.cs</FileName>
     </TypeIdentifier>
   </Class>

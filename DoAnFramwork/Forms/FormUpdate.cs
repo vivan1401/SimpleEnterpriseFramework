@@ -19,14 +19,9 @@ namespace DoAnFramwork
         private List<Control> listControl = new List<Control>();
         private int currentTable;
 
-        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormUpdate(FormType formType, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
-        }
-
-        protected override void LoadTitle()
-        {
-            this.Text = "Màn hình cập nhật";
         }
 
         protected override void LoadButtonsText()

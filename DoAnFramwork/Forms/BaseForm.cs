@@ -36,12 +36,11 @@ namespace DoAnFramwork
 
         public BaseForm() {}
 
-        public BaseForm(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : this()
+        public BaseForm(FormType formType, String formTitle, Size formSize, DatabaseConnection databaseConnection) : this()
         {
             m_FormType = formType;
             m_FormTitle = formTitle;
             m_FormSize = formSize;
-            m_member = member;
 
             db = databaseConnection;
             tables = db.getTables();
@@ -89,9 +88,18 @@ namespace DoAnFramwork
 
         protected virtual void LoadRoles()
         {
-            this.btnAdd.Enabled = m_member.allowCreate();
-            this.btnUpdate.Enabled =m_member.allowUpdate();
-            this.btnRemove.Enabled = m_member.allowDelete();
+            if (m_member != null)
+            {
+                this.btnAdd.Enabled = m_member.allowCreate();
+                this.btnUpdate.Enabled = m_member.allowUpdate();
+                this.btnRemove.Enabled = m_member.allowDelete();
+            }
+            else
+            {
+                this.btnAdd.Enabled = false;
+                this.btnUpdate.Enabled = false;
+                this.btnRemove.Enabled = false;
+            }
         }
 
         protected virtual void LoadButtonsText()
@@ -173,5 +181,11 @@ namespace DoAnFramwork
         protected virtual void BtnUpdate_Click(object sender, EventArgs e) {}
 
         protected virtual void BtnRemove_Click(object sender, EventArgs e) {}
+
+        public void SetMemberShip(UserMemberShipWithRole member)
+        {
+            m_member = member;
+            LoadRoles();
+        }
     }
 }

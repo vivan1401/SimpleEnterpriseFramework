@@ -18,14 +18,9 @@ namespace DoAnFramwork
         private List<Control> listControl = new List<Control>();
         private int currentTable;
 
-        public FormAdd(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormAdd(FormType formType, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
         {
             InitializeComponent();
-        }
-
-        protected override void LoadTitle()
-        {
-            this.Text = "Màn hình thêm";
         }
 
         protected override void LoadButtonsText()

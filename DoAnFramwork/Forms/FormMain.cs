@@ -15,22 +15,16 @@ namespace DoAnFramwork
     public partial class FormMain : BaseForm
     {
         public List<Dictionary<string, string>> dataTable = new List<Dictionary<string, string>>();
-        FormAdd formAdd;
-        FormUpdate formUpdate;
+        private FormAdd formAdd;
+        private FormUpdate formUpdate;
         
-        public FormMain(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormMain(FormType formType, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, formTitle, formSize, databaseConnection)
         {
-            this.formAdd = new FormAdd(FormType.Add, this.m_member, "DefaultAdd", new Size(570, 345), db);
+            this.formAdd = new FormAdd(FormType.Add, "Màn hình thêm", new Size(570, 345), db);
             this.formAdd.SetupForm();
-            this.formUpdate = new FormUpdate(FormType.Update, this.m_member, "DefaultUpdate", new Size(570, 345), db);
+            this.formUpdate = new FormUpdate(FormType.Update, "Màn hình chỉnh sửa", new Size(570, 345), db);
             this.formUpdate.SetupForm();
             InitializeComponent();
-        }
-        
-
-        protected override void LoadTitle()
-        {
-            this.Text = "Màn hình chính";
         }
 
         protected override void LoadButtonsText()
@@ -87,6 +81,7 @@ namespace DoAnFramwork
             {
                 //FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_member, "update123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
                 formUpdate.SetCurrentTable(cbChooseDataTable.SelectedIndex);
+                formUpdate.SetMemberShip(this.m_member);
                 formUpdate.FormClosing += this.FormChild_FormClosing;
                 //formUpdate.SetupForm();
                 formUpdate.DataUpdate(dataTable[listView1.SelectedIndices[0]]);
@@ -104,6 +99,7 @@ namespace DoAnFramwork
             try
             {
                 //FormAdd formAdd = new FormAdd(FormType.Add, this.m_member, "add123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                formAdd.SetMemberShip(this.m_member);
                 formAdd.SetCurrentTable(cbChooseDataTable.SelectedIndex);
                 formAdd.FormClosing += this.FormChild_FormClosing;
                 //formAdd.SetupForm();
@@ -180,6 +176,7 @@ namespace DoAnFramwork
             if(_formAdd != null)
             {
                 this.formAdd = _formAdd;
+                //this.formAdd.SetMemberShip(m_member);
             }
         }
 
@@ -188,7 +185,15 @@ namespace DoAnFramwork
             if (_formUpdate != null)
             {
                 this.formUpdate = _formUpdate;
+                //this.formAdd.SetMemberShip(m_member);
             }
+        }
+
+        private void ListViewDoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count <= 0)
+                return;
+            this.BtnUpdate_Click(sender, e);
         }
     }
 }
