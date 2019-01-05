@@ -203,15 +203,15 @@ namespace Framework
             }
         }
 
-        public Dictionary<String, Type> getField()
-        {
-            //throw new NotImplementedException();
-            Dictionary<String, Type> dict = new Dictionary<String, Type>();
-            dict.Add("id", typeof(Int32));
-            dict.Add("name", typeof(String));
-            dict.Add("gpa", typeof(String));
-            return dict;
-        }
+        //public Dictionary<String, Type> getField()
+        //{
+        //    //throw new NotImplementedException();
+        //    Dictionary<String, Type> dict = new Dictionary<String, Type>();
+        //    dict.Add("id", typeof(Int32));
+        //    dict.Add("name", typeof(String));
+        //    dict.Add("gpa", typeof(String));
+        //    return dict;
+        //}
 
         public List<String> getTables() {
             SqlConnection cnn = null;

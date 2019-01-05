@@ -26,7 +26,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAQAAABCAABBAAAECACEAihAAACAhAAAAAAoAAAAA=</HashCode>
+      <HashCode>AgAAQAAABCAABBAAAkCACEAihAAICAhAAAAAAqAAAAA=</HashCode>
       <FileName>Forms\FormMain.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -89,7 +89,7 @@
   <Class Name="Framework.DatabaseMSSQLConnection" BaseTypeListCollapsed="true">
     <Position X="10" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACBAAFAAABAAAAAAAIgAQEACSAAAAAAAAEAAgAEAAA=</HashCode>
+      <HashCode>AACBAAFAAABAgAAAAAIgAQEACSAAAAAAAgEAAgAEAAA=</HashCode>
       <FileName>Database\DatabaseMSSQLConnection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />

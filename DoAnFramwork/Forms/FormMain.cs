@@ -15,9 +15,15 @@ namespace DoAnFramwork
     public partial class FormMain : BaseForm
     {
         public List<Dictionary<string, string>> dataTable = new List<Dictionary<string, string>>();
+        FormAdd formAdd;
+        FormUpdate formUpdate;
         
         public FormMain(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
         {
+            this.formAdd = new FormAdd(FormType.Add, this.m_member, "DefaultAdd", new Size(570, 345), db);
+            this.formAdd.SetupForm();
+            this.formUpdate = new FormUpdate(FormType.Update, this.m_member, "DefaultUpdate", new Size(570, 345), db);
+            this.formUpdate.SetupForm();
             InitializeComponent();
         }
         
@@ -79,9 +85,10 @@ namespace DoAnFramwork
                 return;
             try
             {
-                FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_member, "update123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                //FormUpdate formUpdate = new FormUpdate(FormType.Update, this.m_member, "update123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                formUpdate.SetCurrentTable(cbChooseDataTable.SelectedIndex);
                 formUpdate.FormClosing += this.FormChild_FormClosing;
-                formUpdate.SetupForm();
+                //formUpdate.SetupForm();
                 formUpdate.DataUpdate(dataTable[listView1.SelectedIndices[0]]);
                 formUpdate.ShowDialog();
             }
@@ -96,9 +103,10 @@ namespace DoAnFramwork
         {
             try
             {
-                FormAdd formAdd = new FormAdd(FormType.Add, this.m_member, "add123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                //FormAdd formAdd = new FormAdd(FormType.Add, this.m_member, "add123", new Size(570, 345), db, cbChooseDataTable.SelectedIndex);
+                formAdd.SetCurrentTable(cbChooseDataTable.SelectedIndex);
                 formAdd.FormClosing += this.FormChild_FormClosing;
-                formAdd.SetupForm();
+                //formAdd.SetupForm();
                 formAdd.ShowDialog();
             }
             catch(Exception ex)
@@ -165,6 +173,22 @@ namespace DoAnFramwork
             feilds = db.getFields(cbChooseDataTable.Text);
             dataTable = db.readData(cbChooseDataTable.Text);
             LoadTable();
+        }
+
+        public void SetFormAdd(FormAdd _formAdd)
+        {
+            if(_formAdd != null)
+            {
+                this.formAdd = _formAdd;
+            }
+        }
+
+        public void SetFormUpdate(FormUpdate _formUpdate)
+        {
+            if (_formUpdate != null)
+            {
+                this.formUpdate = _formUpdate;
+            }
         }
     }
 }

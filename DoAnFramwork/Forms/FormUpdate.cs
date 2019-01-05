@@ -16,12 +16,11 @@ namespace DoAnFramwork
     {
         private Dictionary<string, TextBox> listTextBox = new Dictionary<string, TextBox>();
         private Dictionary<string, string> dataDraw = new Dictionary<string, string>();
+        private List<Control> listControl = new List<Control>();
         private int currentTable;
 
-        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection, int currentTable) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormUpdate(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
         {
-            this.currentTable = currentTable;
-            feilds = db.getFields(tables[currentTable]);
             InitializeComponent();
         }
 
@@ -45,6 +44,14 @@ namespace DoAnFramwork
         //Tạo các ô nhập dựa theo feilds
         public void CreateLabel()
         {
+            foreach (Control control in listControl)
+            {
+                this.Controls.Remove(control);
+            }
+
+            listControl.Clear();
+            listTextBox.Clear();
+
             int i = 0;
             foreach (KeyValuePair<string, Type> feild in feilds)
             {
@@ -64,7 +71,10 @@ namespace DoAnFramwork
                 textBox.Parent = this;
                 this.Controls.Add(textBox);
 
-                listTextBox.Add(feild.Key, textBox);
+                listControl.Add(label);
+                listControl.Add(textBox);
+                if (!listTextBox.ContainsKey(feild.Key))
+                    listTextBox.Add(feild.Key, textBox);
 
                 i++;
             }
@@ -98,6 +108,12 @@ namespace DoAnFramwork
         {
             base.addBtnUpdate();
             this.btnUpdate.Location = new System.Drawing.Point(463, 269);
+        }
+
+        public void SetCurrentTable(int _currentTable)
+        {
+            this.currentTable = _currentTable;
+            feilds = db.getFields(tables[currentTable]);
         }
     }
 }

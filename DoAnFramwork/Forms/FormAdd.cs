@@ -15,12 +15,11 @@ namespace DoAnFramwork
     public partial class FormAdd : BaseForm
     {
         private Dictionary<string,TextBox> listTextBox = new Dictionary<string,TextBox>();
+        private List<Control> listControl = new List<Control>();
         private int currentTable;
 
-        public FormAdd(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection, int currentTable) : base(formType, member, formTitle, formSize, databaseConnection)
+        public FormAdd(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : base(formType, member, formTitle, formSize, databaseConnection)
         {
-            this.currentTable = currentTable;
-            feilds = db.getFields(tables[currentTable]);
             InitializeComponent();
         }
 
@@ -43,6 +42,14 @@ namespace DoAnFramwork
         //Tạo các ô nhập dựa theo feilds
         private void CreateLabel()
         {
+            foreach(Control control in listControl)
+            {
+                this.Controls.Remove(control);
+            }
+
+            listControl.Clear();
+            listTextBox.Clear();
+
             int i = 0;
             foreach (KeyValuePair<string, Type> feild in feilds)
             {
@@ -59,7 +66,10 @@ namespace DoAnFramwork
                 textBox.Parent = this;
                 this.Controls.Add(textBox);
 
-                listTextBox.Add(feild.Key,textBox);
+                listControl.Add(label);
+                listControl.Add(textBox);
+                if(!listTextBox.ContainsKey(feild.Key))
+                    listTextBox.Add(feild.Key,textBox);
 
                 i++;
             }
@@ -68,6 +78,7 @@ namespace DoAnFramwork
         protected override void BtnAdd_Click(object sender, EventArgs e)
         {
             List<string> text = new List<string>();
+            
             foreach (KeyValuePair<string, Type> feild in feilds)
             {
                 text.Add(listTextBox[feild.Key].Text);
@@ -88,6 +99,12 @@ namespace DoAnFramwork
         {
             base.addBtnAdd();
             this.btnAdd.Location = new System.Drawing.Point(463, 269);
+        }
+
+        public void SetCurrentTable(int _currentTable)
+        {
+            this.currentTable = _currentTable;
+            feilds = db.getFields(tables[currentTable]);
         }
     }
 }
