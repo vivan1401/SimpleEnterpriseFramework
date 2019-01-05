@@ -18,7 +18,7 @@ namespace DoAnFramwork
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin(new DatabaseMSSQLConnection("SimpleDatabase", @"VIVAN\SQLEXPRESS"), new DefaultReadRole()));
+            Application.Run(new FormLogin(new DatabaseMSSQLConnection("SimpleDatabase", @"VIVAN\SQLEXPRESS"), new DefaultReadRoleSeparate()));
         }
     }
 }
