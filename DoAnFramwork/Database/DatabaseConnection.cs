@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Framework{
     public interface DatabaseConnection{
-        SqlDataReader readData(String tableName);
+        List<Dictionary<String,String>> readData(String tableName);
         int insert(String tableName, Object[] values);
         int update(String tableName,Object[] values);
         int delete(String tableName,Object obj);
         Dictionary<String,Type> getField();
+        Dictionary<String,Type> getFields(String tableName);
+        List<String> getTables();
+        Type getTypeofField(String tableName, String field);
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MemberShip
 {
-    internal class Role
+    public class Role
     {
         protected List<bool> listRole;
 

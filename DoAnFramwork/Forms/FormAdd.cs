@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MemberShip;
+using Framework;
 
 namespace DoAnFramwork
 {
     public partial class FormAdd : BaseForm
     {
-        Dictionary<string,TextBox> listTextBox = new Dictionary<string,TextBox>();
+        private Dictionary<string,TextBox> listTextBox = new Dictionary<string,TextBox>();
+        private int currentTable;
 
-        public FormAdd(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : base(formType, roles, formTitle, formSize, databaseConnection)
+        public FormAdd(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection, int currentTable) : base(formType, member, formTitle, formSize, databaseConnection)
         {
+            this.currentTable = currentTable;
+            feilds = db.getFields(tables[currentTable]);
             InitializeComponent();
         }
 
@@ -39,7 +44,7 @@ namespace DoAnFramwork
         private void CreateLabel()
         {
             int i = 0;
-            foreach (KeyValuePair<string, string> feild in feilds)
+            foreach (KeyValuePair<string, Type> feild in feilds)
             {
                 Label label = new Label();
                 label.Text = feild.Key;
@@ -62,12 +67,21 @@ namespace DoAnFramwork
 
         protected override void BtnAdd_Click(object sender, EventArgs e)
         {
-            string test = "";
-            foreach (KeyValuePair<string, string> feild in feilds)
+            List<string> text = new List<string>();
+            foreach (KeyValuePair<string, Type> feild in feilds)
             {
-                test += listTextBox[feild.Key].Text+ " ; ";
+                text.Add(listTextBox[feild.Key].Text);
             }
-            MessageBox.Show(test);
+
+            if(db.insert(tables[currentTable], text.ToArray()) == 0)
+            {
+                throw new Exception("Cannot insert");
+            }
+            else
+            {
+                this.Close();
+            }
+            //MessageBox.Show(test);
         }
 
         protected override void addBtnAdd()

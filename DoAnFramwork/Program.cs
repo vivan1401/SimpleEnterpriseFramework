@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MemberShip;
+using Framework;
 
 namespace DoAnFramwork
 {
@@ -16,7 +18,7 @@ namespace DoAnFramwork
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            Application.Run(new FormLogin(new DatabaseMSSQLConnection("SimpleDatabase", @"VIVAN\SQLEXPRESS"), new DefaultReadRole()));
         }
     }
 }

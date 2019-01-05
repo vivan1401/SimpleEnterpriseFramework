@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MemberShip;
+using Framework;
 
 namespace DoAnFramwork
 {
@@ -18,25 +20,37 @@ namespace DoAnFramwork
     };
     public partial class BaseForm : Form
     {
-        public Dictionary<string, string> feilds;
+        protected List<string> tables;
+        protected Dictionary<string, Type> feilds;
         protected Size m_FormSize = new Size(0, 0);
         protected String m_FormTitle = "";
         protected FormType m_FormType = FormType.Main;
         protected String[] m_buttonsName = { "Thêm", "Cập nhật", "Xóa" };
-        protected int[] m_roles = { 0,0,0,0};   // 1.Xem, 2.Thêm, 3.Xóa, 4.Sửa
+        protected UserMemberShipWithRole m_member = null;   // 1.Xem, 2.Thêm, 3.Xóa, 4.Sửa
 
         protected Button btnAdd = new Button();
         protected Button btnUpdate = new Button();
         protected Button btnRemove = new Button();
 
+        protected DatabaseConnection db = null;
+
         public BaseForm() {}
 
-        public BaseForm(FormType formType, int[] roles, String formTitle, Size formSize, String databaseConnection) : this()
+        public BaseForm(FormType formType, UserMemberShipWithRole member, String formTitle, Size formSize, DatabaseConnection databaseConnection) : this()
         {
             m_FormType = formType;
             m_FormTitle = formTitle;
             m_FormSize = formSize;
-            m_roles = roles;
+            m_member = member;
+
+            db = databaseConnection;
+            tables = db.getTables();
+            if(tables == null)
+            {
+                throw new Exception("cannot connect database");
+            }
+            feilds = db.getFields(tables[0]);
+
             InitializeComponent();
         }
 
@@ -75,9 +89,9 @@ namespace DoAnFramwork
 
         protected virtual void LoadRoles()
         {
-            this.btnAdd.Enabled = m_roles[1] == 1 ? true : false;
-            this.btnUpdate.Enabled = m_roles[2] == 1 ? true : false;
-            this.btnRemove.Enabled = m_roles[3] == 1 ? true : false;
+            this.btnAdd.Enabled = m_member.allowCreate();
+            this.btnUpdate.Enabled =m_member.allowUpdate();
+            this.btnRemove.Enabled = m_member.allowDelete();
         }
 
         protected virtual void LoadButtonsText()
@@ -148,10 +162,10 @@ namespace DoAnFramwork
         private void BaseForm_Load(object sender, EventArgs e)
         {
             //Data test
-            feilds = new Dictionary<string, string>();
-            feilds.Add("Tên", "string");
-            feilds.Add("Id", "number");
-            feilds.Add("Ngày sinh", "Date");
+            //feilds = new Dictionary<string, string>();
+            //feilds.Add("Tên", "string");
+            //feilds.Add("Id", "number");
+            //feilds.Add("Ngày sinh", "Date");
         }
 
         protected virtual void BtnAdd_Click(object sender, EventArgs e) {}

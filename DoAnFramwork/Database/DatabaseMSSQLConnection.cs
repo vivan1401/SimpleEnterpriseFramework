@@ -13,19 +13,26 @@ namespace Framework
         public String databaseName { get; set; }
         public String username { get; set; }
         public String password { get; set; }
+        public String dataSource { get; set; }
 
-        public DatabaseMSSQLConnection(String databaseName,String username = null,String password = null) {
+        public DatabaseMSSQLConnection(String databaseName,String dataSource, String username = null,String password = null) {
             this.databaseName = databaseName;
             this.username = username;
             this.password = password;
+            this.dataSource = dataSource;
         }
 
         private SqlConnection createConnection() {
             SqlConnection cnn;
-            string connetionString = @"Data Source=AKWOJQZOBE2VFUU\SQLEXPRESS;Initial Catalog="+this.databaseName;
+            string connetionString = @"Data Source="+dataSource+";Initial Catalog="+this.databaseName;
             if (this.username != null && this.password!=null) {
                 connetionString += ";User ID=" + this.username + ";Password="+ this.password;
             }
+            else
+            {
+                connetionString += @"; Integrated Security = True";
+            }
+            //connetionString = @"Data Source = VIVAN\SQLEXPRESS; Initial Catalog = SimpleDatabase; Integrated Security = True";
             try
             {
                 cnn = new SqlConnection(connetionString);
@@ -36,12 +43,15 @@ namespace Framework
             return cnn;
         }
 
-        public SqlDataReader readData(String tableName)
+        public List<Dictionary<String,String>> readData(String tableName)
         {
             SqlConnection cnn = null;
             SqlCommand cmd;
             SqlDataReader reader;
             String sql;
+
+            List<String> fields = this.getFields(tableName).Keys.ToList();
+            List<Dictionary<String, String>> ret = new List<Dictionary<String, String>>();
             try
             {
                 sql = "Select * from "+tableName;
@@ -51,10 +61,17 @@ namespace Framework
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    for(int i=0;i<reader.FieldCount;++i){
-                        Console.WriteLine(reader.GetValue(i));
+                    Dictionary<String, String> dataRow = new Dictionary<String, String>();
+                    for (int i=0;i<reader.FieldCount;++i){
+                        //Console.WriteLine(reader.GetValue(i));
+                    
+                        dataRow.Add(fields[i], reader.GetValue(i).ToString());
+                        
                     }
+                    ret.Add(dataRow);
                 }
+
+                return ret;
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -65,7 +82,6 @@ namespace Framework
                     cnn.Close();
             }
             //Console.ReadLine();
-            return reader;
         }
 
         public int insert(String tableName, Object[] objs)
@@ -76,7 +92,7 @@ namespace Framework
 
             try
             {
-                List<String> fields = this.getFields(tableName);
+                List<String> fields = this.getFields(tableName).Keys.ToList();
 
                 if (objs.Length != fields.Count) {
                     return 0;
@@ -115,7 +131,7 @@ namespace Framework
 
             try
             {
-                List<String> fields = this.getFields(tableName);
+                List<String> fields = this.getFields(tableName).Keys.ToList();
 
                 if (objs.Length != fields.Count)
                 {
@@ -156,7 +172,7 @@ namespace Framework
 
             try
             {
-                List<String> fields = this.getFields(tableName);
+                List<String> fields = this.getFields(tableName).Keys.ToList();
 
                 // create command
                 cnn = this.createConnection();
@@ -207,6 +223,8 @@ namespace Framework
                     listTables.Add((string)row[2]);
                     Console.WriteLine((string)row[2]);
                 }
+
+                return listTables;
                 //query = "select * from information_schema.tables";
                 //cmd = new SqlCommand(query, cnn);
                 //reader = cmd.ExecuteReader();
@@ -224,10 +242,9 @@ namespace Framework
                     cnn.Close();
                 }
             }
-            return null;
         }
 
-        public List<String> getFields(String tableName) {
+        public Dictionary<String,Type> getFields(String tableName) {
             SqlConnection cnn = null;
             SqlCommand cmd;
             SqlDataReader reader;
@@ -237,6 +254,7 @@ namespace Framework
             {
                 cnn = this.createConnection();
                 cnn.Open();
+                Dictionary<String, Type> fieldsWithTypes = new Dictionary<String, Type>();
                 List<String> listCols = new List<string>();
 
                 cmd = cnn.CreateCommand();
@@ -252,7 +270,12 @@ namespace Framework
                         Console.WriteLine(reader.GetString(0));
                     }
                 }
-                return listCols;
+                if (listCols != null) {
+                    foreach(String field in listCols){
+                        fieldsWithTypes.Add(field, this.getTypeofField(tableName, field));
+                    }
+                }
+                return fieldsWithTypes;
             }
             catch (Exception ex)
             {
