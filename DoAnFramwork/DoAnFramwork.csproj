@@ -55,6 +55,8 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="DatabaseMSSQLConnection.cs" />
     <Compile Include="DefaultReadRole.cs" />
     <Compile Include="FormAdd.cs">
       <SubType>Form</SubType>
